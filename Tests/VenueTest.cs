@@ -35,5 +35,15 @@ namespace BandTracker
       // Assert
       Assert.Equal(expectedList, resultList);
     }
+
+////////////////////////////////////////////////////////////
+    [Fact]
+    public void Band_Equals_TrueForIdenticalObjects()
+    {
+      Band firstBand = new Band("T.Rex");
+      Band secondBand = new Band("T.Rex");
+      Assert.Equal(firstBand, secondBand);
+    }
+
   }
 }
