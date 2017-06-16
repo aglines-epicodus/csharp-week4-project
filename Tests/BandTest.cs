@@ -74,27 +74,27 @@ namespace BandTracker
 
     }
 
+    //////////////////////////////////////////////////////////
+      [Fact]
+      public void GetVenues_ReturnAllVenuesFromOneBand_True()
+      {
+        Band testBand = new Band("XTerminators");
+        testBand.Save();
+
+        Venue firstVenue = new Venue("Showbox");
+        Venue secondVenue = new Venue("The Egyptian");
+        firstVenue.Save();
+        secondVenue.Save();
+
+        testBand.AddVenue(firstVenue);
+        testBand.AddVenue(secondVenue);
+        List<Venue> expectedVenues = new List<Venue>{firstVenue, secondVenue};
+        List<Venue> resultVenues = testBand.GetVenues();
+
+        Assert.Equal(expectedVenues, resultVenues);
+      }
+
     ////////////////////////////////////////////////////////////
-    //   [Fact]
-    //   public void GetVenues_ReturnAllVenuesFromOneBand_True()
-    //   {
-    //     Band testBand = new Band("hearty");
-    //     testBand.Save();
-    //
-    //     Venue firstVenue = new Venue("soup", "heat");
-    //     Venue secondVenue = new Venue("burger", "fry");
-    //     firstVenue.Save();
-    //     secondVenue.Save();
-    //
-    //     testBand.AddVenue(firstVenue);
-    //     testBand.AddVenue(secondVenue);
-    //     List<Venue> expectedVenues = new List<Venue>{firstVenue, secondVenue};
-    //     List<Venue> resultVenues = testBand.GetVenues();
-    //
-    //     Assert.Equal(expectedVenues, resultVenues);
-    //   }
-    //
-    // ////////////////////////////////////////////////////////////
     //   [Fact]
     //   public void Update_UpdatesBandInDb()
     //   {
