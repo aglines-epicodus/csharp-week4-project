@@ -208,34 +208,26 @@ namespace BandTracker.Objects
       }
     }
 
-// ///////////////////////////////////////////////
-//     public void DeleteOneBandAndAllJoinedVenues()
-//     {
-//       SqlConnection conn = DB.Connection();
-//       conn.Open();
-//
-//       SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @BandId; DELETE FROM join_bands_venues WHERE id_venues = @BandId", conn);
-//
-//       SqlParameter venueIdParam = new SqlParameter();
-//       venueIdParam.ParameterName = "@BandId";
-//       venueIdParam.Value = this.GetId();
-//
-//       cmd.Parameters.Add(venueIdParam);
-//       cmd.ExecuteNonQuery();
-//
-//       if (conn != null)
-//       {
-//         conn.Close();
-//       }
-//     }
+///////////////////////////////////////////////
+    public void DeleteOneBandAndAllJoinedVenues()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId; DELETE FROM join_bands_venues WHERE id_bands = @BandId", conn);
 
+      SqlParameter venueIdParam = new SqlParameter();
+      venueIdParam.ParameterName = "@BandId";
+      venueIdParam.Value = this.GetId();
 
+      cmd.Parameters.Add(venueIdParam);
+      cmd.ExecuteNonQuery();
 
-
-
-
-
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
 
 
   }

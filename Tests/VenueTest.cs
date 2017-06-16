@@ -111,25 +111,27 @@ namespace BandTracker
   }
 
 //////////////////////////////////////////////////////////
+  [Fact]
+    public void Delete_DeletesVenueAssociationsFromDatabase_VenueList()
+    {
+      //Arrange
+      Band testBand = new Band("Neutral Milk Hotel");
+      testBand.Save();
 
+      string testName = "Showbox";
+      Venue testVenue = new Venue(testName);
+      testVenue.Save();
 
+      //Act
+      testVenue.AddBand(testBand);
+      testVenue.DeleteOneVenueAndAllJoinedBands();
 
+      List<Venue> resultBandVenues = testBand.GetVenues();
+      List<Venue> testBandVenues = new List<Venue> {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      //Assert
+      Assert.Equal(testBandVenues, resultBandVenues);
+    }
 
 
 
