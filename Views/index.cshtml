@@ -1,0 +1,21 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h3> Venues </h3>
+<ul>
+  @if (@Model.Count!= 0)
+  {
+    @foreach (var bands in Model)
+    {
+      <li>@bands.GetName()</li>
+    }
+  }
+  else
+  {
+    <h3>No venues to display</h3>
+  }
+
+  <!-- <a href = "/bands">View All Bands</a> -->
+  <p><a href = "/venues/new">Add a Venue</a></p>
+</ul>
