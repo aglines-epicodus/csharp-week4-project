@@ -53,7 +53,65 @@ namespace BandTracker
       Band savedBand = Band.GetAll()[0];
       Assert.Equal(newBand, savedBand);
     }
+////////////////////////////////////////////////////////////
+    [Fact]
+    public void Venue_AddVenuesToOneBand_True()
+    {
+      //arrange manual data
+      Band newBand = new Band("Road Dogs");
+      newBand.Save();
 
-    
+      Venue firstVenue = new Venue("Showbox");
+      Venue secondVenue = new Venue("The Egyptian");
+      firstVenue.Save();
+      secondVenue.Save();
+
+      newBand.AddVenue(firstVenue);
+      newBand.AddVenue(secondVenue);
+
+      List<Venue> result = newBand.GetVenues();
+      List<Venue> expected = new List<Venue>{firstVenue, secondVenue};
+
+    }
+
+    ////////////////////////////////////////////////////////////
+    //   [Fact]
+    //   public void GetVenues_ReturnAllVenuesFromOneBand_True()
+    //   {
+    //     Band testBand = new Band("hearty");
+    //     testBand.Save();
+    //
+    //     Venue firstVenue = new Venue("soup", "heat");
+    //     Venue secondVenue = new Venue("burger", "fry");
+    //     firstVenue.Save();
+    //     secondVenue.Save();
+    //
+    //     testBand.AddVenue(firstVenue);
+    //     testBand.AddVenue(secondVenue);
+    //     List<Venue> expectedVenues = new List<Venue>{firstVenue, secondVenue};
+    //     List<Venue> resultVenues = testBand.GetVenues();
+    //
+    //     Assert.Equal(expectedVenues, resultVenues);
+    //   }
+    //
+    // ////////////////////////////////////////////////////////////
+    //   [Fact]
+    //   public void Update_UpdatesBandInDb()
+    //   {
+    //     string name = "newBand, idk, lunch?";
+    //     Band testBand = new Band(name);
+    //     testBand.Save();
+    //
+    //     string newName = "no, dinner!";
+    //     testBand.Update(newName);
+    //
+    //     string resultName = testBand.GetName();
+    //
+    //     Assert.Equal(resultName, newName);
+    //   }
+
+    ////////////////////////////////////////////////////////////
+
+
   }
 }
