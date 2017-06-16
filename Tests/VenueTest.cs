@@ -38,23 +38,22 @@ namespace BandTracker
 
 ////////////////////////////////////////////////////////////
     [Fact]
-    public void Venue_Save_SavesVenueToDb()
-    {
-      Venue newVenue = new Venue("Arcade Fire Hazard");
-
-      newVenue.Save();
-      Venue savedVenue = Venue.GetAll()[0];
-
-      Assert.Equal(newVenue, savedVenue);
-    }
-////////////////////////////////////////////////////////////
-    [Fact]
     public void Band_Equals_TrueForIdenticalObjects()
     {
       Band firstBand = new Band("T.Rex");
       Band secondBand = new Band("T.Rex");
       Assert.Equal(firstBand, secondBand);
     }
+////////////////////////////////////////////////////////////
+    [Fact]
+    public void Venue_Save_SavesVenueToDb()
+    {
+      Venue newVenue = new Venue("Arcade Fire Hazard");
+      newVenue.Save();
+      Venue savedVenue = Venue.GetAll()[0];
+      Assert.Equal(newVenue, savedVenue);
+    }
+
 
   }
 }
