@@ -48,6 +48,14 @@ namespace BandTracker
         SelectedVenue.DeleteOneVenueAndAllJoinedBands();
         return View["success.cshtml"];
       };
+      Get["/venues/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var SelectedVenue = Venue.Find(parameters.id);
+        var VenueBands = SelectedVenue.GetBands();
+        model.Add("venue", SelectedVenue);
+        model.Add("bands", VenueBands);
+        return View["venue.cshtml", model];
+      };
 
 
 
