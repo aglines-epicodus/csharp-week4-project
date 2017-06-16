@@ -14,6 +14,11 @@ namespace BandTracker
         return View["index.cshtml", AllVenues];
       };
 
+      Get["/venues"] = _ => {
+          List<Venue> AllVenues = Venue.GetAll();
+          return View["venues.cshtml", AllVenues];
+      };
+
       Get["/venues/new"] = _ => {
       return View["venue_form.cshtml"];
       };
@@ -23,6 +28,31 @@ namespace BandTracker
         newVenue.Save();
         return View["success.cshtml"];
       };
+
+      Get["venue/edit/{id}"] = parameters => {
+        Venue SelectedVenues = Venue.Find(parameters.id);
+        return View["venue_edit.cshtml", SelectedVenues];
+      };
+
+      Patch["venue/edit/{id}"] = parameters => {
+        Venue SelectedVenues = Venue.Find(parameters.id);
+        SelectedVenues.Update(Request.Form["venue-name"]);
+        return View["success.cshtml"];
+      };
+      Get["venue/delete/{id}"] = parameters => {
+        Venue SelectedVenue = Venue.Find(parameters.id);
+        return View["venue_delete.cshtml", SelectedVenue];
+      };
+      Delete["venue/delete/{id}"] = parameters => {
+        Venue SelectedVenue = Venue.Find(parameters.id);
+        SelectedVenue.DeleteOneVenueAndAllJoinedBands();
+        return View["success.cshtml"];
+      };
+
+
+
+
+
 
     // Get["/bands/new"] = _ => {
     //   List<Venues> AllCategories = Venues.GetAll();
@@ -49,10 +79,6 @@ namespace BandTracker
     //   };
     //
     //
-    // Post["/bands/delete"] = _ => {
-    // Band.DeleteAll();
-    // return View["cleared.cshtml"];
-    // };
     // Get["/venues/{id}"] = parameters => {
     //   Dictionary<string, object> model = new Dictionary<string, object>();
     //   var SelectedVenues = Venues.Find(parameters.id);
@@ -62,27 +88,8 @@ namespace BandTracker
     //   return View["venue.cshtml", model];
     // };
     //
-    // Get["venue/edit/{id}"] = parameters => {
-    //   Venues SelectedVenues = Venues.Find(parameters.id);
-    //   return View["venue_edit.cshtml", SelectedVenues];
-    // };
     //
-    // Patch["venue/edit/{id}"] = parameters => {
-    //   Venues SelectedVenues = Venues.Find(parameters.id);
-    //   SelectedVenues.Update(Request.Form["venue-name"]);
-    //   return View["success.cshtml"];
-    // };
-    //
-    //
-    // Get["venue/delete/{id}"] = parameters => {
-    //   Venues SelectedVenues = Venues.Find(parameters.id);
-    //   return View["venue_delete.cshtml", SelectedVenues];
-    // };
-    // Delete["venue/delete/{id}"] = parameters => {
-    //   Venues SelectedVenues = Venues.Find(parameters.id);
-    //   SelectedVenues.Delete();
-    //   return View["success.cshtml"];
-    // };
+
     }
   }
 }
