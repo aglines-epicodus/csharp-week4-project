@@ -32,6 +32,22 @@ namespace BandTracker.Objects
       _name = newName;
     }
 ///////////////////////////////////////////////
+    public override bool Equals(System.Object otherVenue)
+    {
+      if (!(otherVenue is Venue))
+      {
+        return false;
+      }
+      else
+      {
+        Venue newVenue = (Venue) otherVenue;
+        bool nameEquality = this.GetName() == newVenue.GetName();
+        bool idEquality = this.GetId() == newVenue.GetId();
+
+        return (nameEquality && idEquality);
+      }
+    }
+///////////////////////////////////////////////
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
