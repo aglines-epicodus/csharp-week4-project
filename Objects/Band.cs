@@ -172,42 +172,42 @@ namespace BandTracker.Objects
     }
 
 
-// ///////////////////////////////////////////////
-//     public void Update(string newName)
-//     {
-//       SqlConnection conn = DB.Connection();
-//       conn.Open();
-//
-//       SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewName OUTPUT INSERTED.name WHERE id = @BandId", conn);
-//
-//       SqlParameter newNameParam = new SqlParameter();
-//       newNameParam.ParameterName = "@NewName";
-//       newNameParam.Value = newName;
-//
-//       SqlParameter venueIdParam = new SqlParameter();
-//       venueIdParam.ParameterName = "@BandId";
-//       venueIdParam.Value = this.GetId();
-//
-//       cmd.Parameters.Add(newNameParam);
-//       cmd.Parameters.Add(venueIdParam);
-//
-//       SqlDataReader rdr = cmd.ExecuteReader();
-//
-//       while (rdr.Read())
-//       {
-//         this._name = rdr.GetString(0);
-//       }
-//
-//       if (rdr != null)
-//       {
-//         rdr.Close();
-//       }
-//       if (conn != null)
-//       {
-//         conn.Close();
-//       }
-//     }
-//
+///////////////////////////////////////////////
+    public void Update(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE bands SET name = @NewName OUTPUT INSERTED.name WHERE id = @BandId", conn);
+
+      SqlParameter newNameParam = new SqlParameter();
+      newNameParam.ParameterName = "@NewName";
+      newNameParam.Value = newName;
+
+      SqlParameter bandIdParam = new SqlParameter();
+      bandIdParam.ParameterName = "@BandId";
+      bandIdParam.Value = this.GetId();
+
+      cmd.Parameters.Add(newNameParam);
+      cmd.Parameters.Add(bandIdParam);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
 // ///////////////////////////////////////////////
 //     public void DeleteOneBandAndAllJoinedVenues()
 //     {

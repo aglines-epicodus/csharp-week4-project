@@ -74,43 +74,43 @@ namespace BandTracker
 
     }
 
-    //////////////////////////////////////////////////////////
-      [Fact]
-      public void GetVenues_ReturnAllVenuesFromOneBand_True()
-      {
-        Band testBand = new Band("XTerminators");
-        testBand.Save();
+  //////////////////////////////////////////////////////////
+    [Fact]
+    public void GetVenues_ReturnAllVenuesFromOneBand_True()
+    {
+      Band testBand = new Band("XTerminators");
+      testBand.Save();
 
-        Venue firstVenue = new Venue("Showbox");
-        Venue secondVenue = new Venue("The Egyptian");
-        firstVenue.Save();
-        secondVenue.Save();
+      Venue firstVenue = new Venue("Showbox");
+      Venue secondVenue = new Venue("The Egyptian");
+      firstVenue.Save();
+      secondVenue.Save();
 
-        testBand.AddVenue(firstVenue);
-        testBand.AddVenue(secondVenue);
-        List<Venue> expectedVenues = new List<Venue>{firstVenue, secondVenue};
-        List<Venue> resultVenues = testBand.GetVenues();
+      testBand.AddVenue(firstVenue);
+      testBand.AddVenue(secondVenue);
+      List<Venue> expectedVenues = new List<Venue>{firstVenue, secondVenue};
+      List<Venue> resultVenues = testBand.GetVenues();
 
-        Assert.Equal(expectedVenues, resultVenues);
-      }
+      Assert.Equal(expectedVenues, resultVenues);
+    }
 
-    ////////////////////////////////////////////////////////////
-    //   [Fact]
-    //   public void Update_UpdatesBandInDb()
-    //   {
-    //     string name = "newBand, idk, lunch?";
-    //     Band testBand = new Band(name);
-    //     testBand.Save();
-    //
-    //     string newName = "no, dinner!";
-    //     testBand.Update(newName);
-    //
-    //     string resultName = testBand.GetName();
-    //
-    //     Assert.Equal(resultName, newName);
-    //   }
+  //////////////////////////////////////////////////////////
+    [Fact]
+    public void Update_UpdatesBandInDb()
+    {
+      string name = "newBand";
+      Band testBand = new Band(name);
+      testBand.Save();
 
-    ////////////////////////////////////////////////////////////
+      string newName = "no, some other band!";
+      testBand.Update(newName);
+
+      string resultName = testBand.GetName();
+
+      Assert.Equal(resultName, newName);
+    }
+
+  //////////////////////////////////////////////////////////
 
 
   }

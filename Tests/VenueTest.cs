@@ -94,23 +94,23 @@ namespace BandTracker
     Assert.Equal(expectedBands, resultBands);
   }
 
-// ////////////////////////////////////////////////////////////
-//   [Fact]
-//   public void Update_UpdatesVenueInDb()
-//   {
-//     string name = "newVenue, idk, lunch?";
-//     Venue testVenue = new Venue(name);
-//     testVenue.Save();
-//
-//     string newName = "no, dinner!";
-//     testVenue.Update(newName);
-//
-//     string resultName = testVenue.GetName();
-//
-//     Assert.Equal(resultName, newName);
-//   }
-
 ////////////////////////////////////////////////////////////
+  [Fact]
+  public void Update_UpdatesVenueInDb()
+  {
+    string name = "newVenue";
+    Venue testVenue = new Venue(name);
+    testVenue.Save();
+
+    string newName = "no, some other place!";
+    testVenue.Update(newName);
+
+    string resultName = testVenue.GetName();
+
+    Assert.Equal(resultName, newName);
+  }
+
+//////////////////////////////////////////////////////////
 
 
 
