@@ -44,6 +44,16 @@ namespace BandTracker
       Band secondBand = new Band("T.Rex");
       Assert.Equal(firstBand, secondBand);
     }
+////////////////////////////////////////////////////////////
+    [Fact]
+    public void Band_Save_SavesBandToDb()
+    {
+      Band newBand = new Band("Arcade Fire Hazard");
 
+      newBand.Save();
+      Band savedBand = Band.GetAll()[0];
+
+      Assert.Equal(newBand, savedBand);
+    }
   }
 }
