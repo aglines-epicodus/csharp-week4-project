@@ -1,25 +1,24 @@
 using System.Collections.Generic;
 using Nancy;
 using Nancy.ViewEngines.Razor;
-using /////////NEW PROJET .Objects;
+using BandTracker.Objects;
 
-
-namespace /////////NEW PROJESDCDSCSDFSDS
+namespace BandTracker
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
-      // root -> list all recipes
-      Get["/"] = _ => {
-        List<Recipe> allRecipes = Recipe.GetAll();
-        return View["index.cshtml", allRecipes];
-      };
-
-      // thing add
-      Get["/THINGS/add"] = _ => {
-        Post[""]
-      };
+      // root -> list all bands
+      // Get["/"] = _ => {
+      //   List<Band> allBands = Band.GetAll();
+      //   return View["index.cshtml", allBands];
+      // };
+      //
+      // // thing add
+      // Get["/THINGS/add"] = _ => {
+      //   Post[""]
+      // };
 
     }
   }

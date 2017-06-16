@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace NEW PROJECT !!! .Objects
+namespace BandTracker.Objects
 {
   public class DB
   {
