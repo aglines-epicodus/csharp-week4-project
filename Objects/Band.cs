@@ -145,7 +145,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO join_bands_venues (id_bands, id_venues) VALUES (@BandId, @VenueId)", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues_join (id_bands, id_venues) VALUES (@BandId, @VenueId)", conn);
 
       SqlParameter VenueIdParam = new SqlParameter();
       VenueIdParam.ParameterName = "@VenueId";
@@ -170,7 +170,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN join_bands_venues ON (bands.id = join_bands_venues.id_bands) JOIN venues ON (venues.id = join_bands_venues.id_venues) WHERE bands.id = @BandId", conn);
+      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues_join ON (bands.id = bands_venues_join.id_bands) JOIN venues ON (venues.id = bands_venues_join.id_venues) WHERE bands.id = @BandId", conn);
 
       SqlParameter BandIdParam = new SqlParameter();
       BandIdParam.ParameterName = "@BandId";
@@ -244,7 +244,7 @@ namespace BandTracker.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId; DELETE FROM join_bands_venues WHERE id_bands = @BandId", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands WHERE id = @BandId; DELETE FROM bands_venues_join WHERE id_bands = @BandId", conn);
 
       SqlParameter venueIdParam = new SqlParameter();
       venueIdParam.ParameterName = "@BandId";
