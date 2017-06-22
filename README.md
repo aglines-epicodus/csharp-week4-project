@@ -15,14 +15,13 @@ This web application will allow a user to manipulate data surrounding bands and 
 | Update a band | Find band Amon Tobin| Update |
 | Delete a band | Delete band Amon Tobin| Delete |
 | Add a venue. |Add venue: The Crocodile | Add  |
-| Find a venue. |Find venue: The Crocodile | A find function. |
-| Search for a venue. |Search venue: The Crocodile | A search function. |
-| Delete a venue. |Delete venue: The Crocodile |  A delete function. |
-| Update a venue |Find venue: The Crocodile, update to The Showbox | An update function. |
-| View all venues. | Venues: The Crocodile, The Showbox | View the full list of venues in the database. |
-| View a venue's bands. | venue: The Crocodile | View the full list of venues in the database. |
+| Find a venue. |Find venue: The Crocodile | Find |
+| Search for a venue. |Search venue: The Crocodile | Search |
+| Delete a venue. |Delete venue: The Crocodile |  Delete |
+| Update a venue |Find venue: The Crocodile, update to The Showbox | Update |
+| View all venues. | Venues: The Crocodile, The Showbox | View all venues |
+| View a venue's bands. | venue: The Crocodile | View all venues |
 | Link a venue to a band. | venue: The Crocodile, band: Amon Tobin | A one to one database relationship. |
-| Link a venue to several bands. | venue: The Crocodile, bands: Amon Tobin | A one to many database relationship. |
 
 
 ## Setup/Installation Requirements
