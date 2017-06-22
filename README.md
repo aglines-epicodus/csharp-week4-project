@@ -16,17 +16,22 @@ This web application will allow a user to manipulate data surrounding bands and 
 
 Must have current version of .Net and Mono installed. Will require database file to work correctly, see download instructions below.
 
-Copy all files and folders to your desktop or {git clone} the project using this link DO NOT FORGET TO PUT LINK HERE.
+Copy all files and folders to your desktop or {git clone} the project using this link https://github.com/aglines-epicodus/csharp-week4-project.git.
 
 To recreate the databases using SQLCMD in powershell on a windows operating system type:
+
 * > create database band_tracker > go
 * > create table bands (id INT IDENTITY(1,1), name VARCHAR(255)) > go
-* > create table join_bands_venues (id INT IDENTITY(1,1), id_bands INT, id_venues INT) > go
+* > create table bands_venues_join (id INT IDENTITY(1,1), id_bands INT, id_venues INT) > go
+* > create table venues (id INT IDENTITY(1,1), name VARCHAR(255))  > go
+
+* > create database band_tracker_test> go
+* > create table bands (id INT IDENTITY(1,1), name VARCHAR(255)) > go
+* > create table bands_venues_join (id INT IDENTITY(1,1), id_bands INT, id_venues INT) > go
 * > create table venues (id INT IDENTITY(1,1), name VARCHAR(255))  > go
 
 Navigate to the folder in your Windows powershell and run {dnu restore} to compile the file then run {dnx kestrel} to start the web server. In your web browser address bar, navigate to {//localhost:5004} to get to the home page.
 
-To create the test database, back up
 
 ## Known Bugs
 
