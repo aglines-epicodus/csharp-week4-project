@@ -258,7 +258,5 @@ namespace BandTracker.Objects
         conn.Close();
       }
     }
-
-
   }
 }

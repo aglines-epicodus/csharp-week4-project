@@ -60,37 +60,47 @@ namespace BandTracker
         List<Venue> AllVenues = Venue.GetAll();
         return View["bands_form.cshtml", AllVenues];
       };
+
       Post["/bands/new"] = _ => {
         Band newBand = new Band(Request.Form["band-name"], Request.Form["venue-id"]);
         newBand.Save();
         return View["success.cshtml"];
       };
 
+      Get["/bands"] = _ => {
+        List<Band> AllBands = Band.GetAll();
+        return View["bands.cshtml", AllBands];
+      };
+
+      Get["/venues"] = _ => {
+        List<Venue> AllVenues = Venue.GetAll();
+        return View["venues.cshtml", AllVenues];
+      };
+
+      Get["/band/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        var SelectedBand = Band.Find(parameters.id);
+        var BandsVenues = SelectedBand.GetVenues();
+        model.Add("bands", SelectedBand);
+        model.Add("venues", BandsVenues);
+        return View["band.cshtml", model];
+      };
 
 
+      // Post["band/add_venue"] = _ => {
+      //   Venue newVenue = Venue.Find(Request.Form["venue-id"]);
+      //   Band newBand = Band.Find(Request.Form["band-id"]);
+      //   newBand.AddVenue(newVenue);
+      //   return View["success.cshtml"];
+      // };
+      //
+      // Post["venue/add_band"] = _ => {
+      //   Band newBand = Band.Find(Request.Form["band-id"]);
+      //   Venue newVenue = Venue.Find(Request.Form["venue-id"]);
+      //   newVenue.AddBand(newBand);
+      //   return View["success.cshtml"];
+      // };
 
-    //
-    //   Get["/bands"] = _ => {
-    //     List<Band> AllBands = Band.GetAll();
-    //     return View["bands.cshtml", AllBands];
-    //   };
-    //
-    //   Get["/venues"] = _ => {
-    //     List<Venue> AllVenues = Venue.GetAll();
-    //     return View["venues.cshtml", AllVenues];
-    //   };
-    //
-    //
-    // Get["/venues/{id}"] = parameters => {
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   var SelectedVenues = Venues.Find(parameters.id);
-    //   var VenuesBands = SelectedVenues.GetBands();
-    //   model.Add("venue", SelectedVenues);
-    //   model.Add("bands", VenuesBands);
-    //   return View["venue.cshtml", model];
-    // };
-    //
-    //
 
     }
   }

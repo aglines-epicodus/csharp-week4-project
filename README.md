@@ -26,6 +26,8 @@ To recreate the databases using SQLCMD in powershell on a windows operating syst
 
 Navigate to the folder in your Windows powershell and run {dnu restore} to compile the file then run {dnx kestrel} to start the web server. In your web browser address bar, navigate to {//localhost:5004} to get to the home page.
 
+To create the test database, back up
+
 ## Known Bugs
 
 * No known bugs.
