@@ -48,14 +48,27 @@ namespace BandTracker
         SelectedVenue.DeleteOneVenueAndAllJoinedBands();
         return View["success.cshtml"];
       };
+
+      // Get["/venues/{id}"] = parameters => {
+      //   Dictionary<string, object> model = new Dictionary<string, object>();
+      //   var SelectedVenue = Venue.Find(parameters.id);
+      //   var VenueBands = SelectedVenue.GetBands();
+      //   model.Add("venue", SelectedVenue);
+      //   model.Add("bands", VenueBands);
+      //   return View["venue.cshtml", model];
+      // };
+
       Get["/venues/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        var SelectedVenue = Venue.Find(parameters.id);
-        var VenueBands = SelectedVenue.GetBands();
+        Venue SelectedVenue = Venue.Find(parameters.id);
+        List<Band> VenueBands = SelectedVenue.GetBands();
+        List<Band> allBands = Band.GetAll();
         model.Add("venue", SelectedVenue);
-        model.Add("bands", VenueBands);
+        model.Add("venueBands", VenueBands);
+        model.Add("allBands", allBands);
         return View["venue.cshtml", model];
       };
+
       Get["/bands/new"] = _ => {
         List<Venue> AllVenues = Venue.GetAll();
         return View["bands_form.cshtml", AllVenues];
@@ -79,27 +92,34 @@ namespace BandTracker
 
       Get["/band/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        var SelectedBand = Band.Find(parameters.id);
-        var BandsVenues = SelectedBand.GetVenues();
-        model.Add("bands", SelectedBand);
-        model.Add("venues", BandsVenues);
+        Band SelectedBand = Band.Find(parameters.id);
+        List<Venue> BandsVenues = SelectedBand.GetVenues();
+        List<Venue> AllVenues = Venue.GetAll();
+        model.Add("band", SelectedBand);
+        model.Add("bandVenues", BandsVenues);
+        model.Add("allVenues", AllVenues);
         return View["band.cshtml", model];
+        // return View["band.cshtml"];
       };
 
+      // Get["/band/{id}"] = _ => {
+      //   return View["band.cshtml"];
+      // };
 
-      // Post["band/add_venue"] = _ => {
-      //   Venue newVenue = Venue.Find(Request.Form["venue-id"]);
-      //   Band newBand = Band.Find(Request.Form["band-id"]);
-      //   newBand.AddVenue(newVenue);
-      //   return View["success.cshtml"];
-      // };
-      //
-      // Post["venue/add_band"] = _ => {
-      //   Band newBand = Band.Find(Request.Form["band-id"]);
-      //   Venue newVenue = Venue.Find(Request.Form["venue-id"]);
-      //   newVenue.AddBand(newBand);
-      //   return View["success.cshtml"];
-      // };
+
+      Post["band/add_venue"] = _ => {
+        Venue newVenue = Venue.Find(Request.Form["venue-id"]);
+        Band newBand = Band.Find(Request.Form["band-id"]);
+        newBand.AddVenue(newVenue);
+        return View["success.cshtml"];
+      };
+
+      Post["venue/add_band"] = _ => {
+        Band newBand = Band.Find(Request.Form["band-id"]);
+        Venue newVenue = Venue.Find(Request.Form["venue-id"]);
+        newVenue.AddBand(newBand);
+        return View["success.cshtml"];
+      };
 
 
     }

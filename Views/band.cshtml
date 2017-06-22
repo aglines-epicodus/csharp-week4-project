@@ -2,23 +2,23 @@
   Layout="Shared/_Layout.cshtml";
 }
 
-<!-- <h2>For @Model["band"].GetName(), here are their venues:</h2> -->
+  <h2>For @Model["band"].GetName(), here are their venues:</h2>
 
-@if (@Model["venues"].Count == 0)
+@if (@Model["bandVenues"].Count == 0)
 {
   <p> This band hasn't had any gigs yet!  They're undiscovered. </p>
 }
 else
 {
   <ol>
-    @foreach (var venue in @Model["venues"])
+    @foreach (var venue in @Model["bandVenues"])
     {
       <li>@venue.GetName()</li>
     }
   </ol>
 }
 
-<!-- <p><h4><a href="/venues/new">Add a new venue to this band</a></h4></p>
+<p><h4><a href="/venues/new">Add a new venue to this band</a></h4></p>
   <form action = "/band/add_venue" method="post">
     <input id="band-id" name="band-id" type="hidden" value="@Model["band"].GetId()">
     <label for="venue-id">Venue for this band</label>
@@ -29,4 +29,4 @@ else
       }
     </select>
     <button type="submit">Add this venue</button>
-  </form> -->
+  </form>
